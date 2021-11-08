@@ -1,0 +1,104 @@
+.main-container {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    height: 92vh;
+}
+
+.home-screen {
+    display: flex;
+    justify-content: space-between;
+}
+
+.home-paragraph-section {
+    text-align: center;
+}
+
+.home-screen-button-login, .home-screen-button-register {
+    border-radius: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    background-color: white;
+    background: transparent;
+    line-height: normal;
+    border: 0.5px solid #eb9731;
+    color: #eb9731;
+}
+
+.home-screen-button-register:hover, .home-screen-button-login:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.left-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 330px;
+    margin-right: 50px;
+}
+
+.right-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 330px;
+}
+
+.text-logo {
+    font-size: 72px;
+    font-weight: 100;
+    color: #eb9731;
+}
+
+.step-one {
+    margin-top: 25px;
+}
+
+.home-section {
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 50%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-number {
+    text-align: center;
+    color: #eb9731;
+}
+
+.number {
+    font-weight: 100;
+    font-size: 72px;
+}
+
+.text-section {
+    text-align: center;
+    margin-bottom: 25px;
+    padding: 20px;
+}
+
+.img {
+    margin-top: 10px;
+}
+
+.hr-50 {
+    width: 50%;
+}
+
+.home-screen-section-two {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.number-one, .number-two, .number-three {
+    flex: 1;
+}

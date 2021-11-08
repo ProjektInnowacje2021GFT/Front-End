@@ -1,0 +1,22 @@
+<div class="reservation-container">
+    <div *ngFor="let reservation of reservations" class="reservation-details" (click)="openReservationDetails(reservation)">
+        <div class="reservation-img">
+            <img width="100" height="100" src="../../../assets/desk_orange.png">
+        </div>
+        <div class="reservation-details-text">
+            Data: <b>{{reservation.reservationDate}}</b> <br>
+            Piętro: <b>{{reservation.floor}}</b> <br>
+            Sektor: <b>{{reservation.sector}}</b> <br>
+            Biurko: <b>{{reservation.desk}}</b> <br>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="reservations.length === 0" class="reservation-container">
+    <h1>
+        Nie posiadasz jeszcze żadnych rezerwacji ☹️.
+    </h1>
+    <button class="reservation-button" [routerLink]="['/new-reservation']" routerLinkActive="router-link-active" >
+        Kliknij, aby dodać nową
+    </button>
+</div>

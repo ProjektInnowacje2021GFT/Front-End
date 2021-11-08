@@ -1,0 +1,30 @@
+<div class="tickets-container">
+    <div class="table-container">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Imię</th>
+                <th scope="col">Nazwisko</th>
+                <th scope="col">Firma</th>
+                <th scope="col">Adres e-mail</th>
+                <th scope="col">Rola</th>
+                <th *ngIf="loggedInUserRole === 'ADMIN'" scope="col">Akcja</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let employee of employees"> 
+                <td>{{employee.name}}</td>
+                <td>{{employee.surname}}</td>
+                <td>{{employee.company}}</td>
+                <td>{{employee.email}}</td>
+                <td>{{determineUserRole(employee.role)}}</td>
+                <td *ngIf="loggedInUserRole === 'ADMIN'">
+                    <button class="decline-button" (click)="deleteUser(employee.userId)">
+                        Usuń
+                    </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>

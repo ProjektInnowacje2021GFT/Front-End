@@ -1,0 +1,92 @@
+<div class="dashboard-container">
+    <div class="first-section">
+        <div *ngIf="userHasAnyReservation" class="newest-reservation">
+            <div class="desk-icon">
+                <img width="100" height="100" src="../../../assets/desk_orange.png" class="img-fluid desk">
+            </div>
+            <div class="header">
+                <div class="dashboard-header-container">
+                    <h1 class="dashboard-header">
+                        Twoja najbliższa rezerwacja
+                    </h1>
+                </div>
+                <div class="dashboard-paragraph-container">
+                    <p class="newest-reservation-paragraph">
+                        {{latestReservationDetails.reservationDate}}, sektor {{latestReservationDetails.sector}} / biurko nr {{latestReservationDetails.desk}}
+                    </p>
+                    <button class="gdesk-button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                        Detale rezerwacji
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="second-section">
+        <div class="action-container">
+            <div class="add-reservation" (click)="redirectToNewReservation()">
+                <div class="add-reservation-icon">
+                    <img width="100" height="100" src="../../../assets/plus_icon.png" class="img-fluid">
+                </div>
+                <div class="add-reservation-header-container">
+                    <h1 class="dashboard-header">
+                        Dodaj nową rezerwację
+                    </h1>
+                </div>
+            </div>
+            <div class="reservation-list" (click)="redirectToReservations()">
+                <div class="reservation-list-icon">
+                    <img width="100" height="100" src="../../../assets/calendar.png" class="img-fluid">
+                </div>
+                <div class="reservation-list-header-container">
+                    <h1 class="dashboard-header">
+                        Przejrzyj swoje rezerwacje
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Detale najbliższej rezerwacji</h5>
+        </div>
+        <div class="modal-body">
+            <div class="details-container">
+                <div class="details-header">
+                    <h1>
+                        Użytkownik {{latestReservationDetails.emailAddressOfAPersonThatBelongsToReservation}}
+                    </h1>
+                </div>
+
+                <div class="details-content">
+                    Piętro: {{latestReservationDetails.floor}} <br>
+                    Sektor: {{latestReservationDetails.sector}} <br>
+                    Miejsce: {{latestReservationDetails.desk}}
+                </div>
+
+                <hr> 
+
+                <div class="details-qr-code">
+                    <h1>
+                        Kod QR
+                    </h1>
+                    tu bedzie wygenerowany qr code z javki
+                </div>
+
+                <div class="details-action">
+                    <button class="delete-button" (click)="deleteReservation()">
+                        Usuń rezerwację
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+        </div>
+      </div>
+    </div>
+</div>

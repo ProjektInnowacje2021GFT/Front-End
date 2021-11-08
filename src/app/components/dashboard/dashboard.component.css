@@ -1,0 +1,137 @@
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.first-section {
+    width: 100%;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard-header {
+    font-weight: 100;
+    margin-left: 15px;
+}
+
+.newest-reservation {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    border: 0.5px solid antiquewhite;
+    padding: 50px;
+    width: 70%;
+    border-radius: 10px;
+}
+
+.desk:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.newest-reservation-paragraph {
+    font-weight: 100;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+
+.second-section {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.action-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 0.5px solid antiquewhite;
+    padding: 50px;
+    width: 70%;
+    border-radius: 10px;
+}
+
+.add-reservation, .reservation-list {
+    border: 0.5px solid antiquewhite;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    background-color: antiquewhite;
+}
+
+.add-reservation:hover, .reservation-list:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 986px) {
+    .action-container {
+        flex-direction: column;
+    }
+}
+
+.gdesk-button {
+    border-radius: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    background-color: white;
+    background: transparent;
+    line-height: normal;
+    color: #eb9731;
+    border: 0.5px solid #eb9731;
+}
+
+.gdesk-button:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.details-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.details-header h1, .details-qr-code h1 {
+    font-size: 20px;
+    font-weight: 100;
+    text-align: center;
+}
+
+.details-action {
+    margin-top: 20px;
+}
+
+.delete-button {
+    border-radius: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    background-color: white;
+    background: transparent;
+    line-height: normal;
+    color: red;
+    border: 0.5px solid red;
+}
+
+.delete-button:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}

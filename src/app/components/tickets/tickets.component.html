@@ -1,0 +1,33 @@
+<div class="tickets-container">
+    <div class="table-container">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Imię</th>
+                <th scope="col">Nazwisko</th>
+                <th scope="col">Firma</th>
+                <th scope="col">Adres e-mail</th>
+                <th scope="col">Status</th>
+                <th scope="col">Akcja</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let waitingUser of waitingUserDtos"> 
+                <td *ngIf="waitingUser.status === 'WAITING'">{{waitingUser.name}}</td>
+                <td *ngIf="waitingUser.status === 'WAITING'">{{waitingUser.surname}}</td>
+                <td *ngIf="waitingUser.status === 'WAITING'">{{waitingUser.company}}</td>
+                <td *ngIf="waitingUser.status === 'WAITING'">{{waitingUser.emailAddress}}</td>
+                <td *ngIf="waitingUser.status === 'WAITING'">{{determineUserStatus(waitingUser.status)}}</td>
+                <td *ngIf="waitingUser.status === 'WAITING'">
+                    <button class="accept-button" (click)="acceptUser(waitingUser.emailAddress)">
+                        Zaakceptuj
+                    </button>
+                    <button class="decline-button" (click)="declineUser(waitingUser.emailAddress)">
+                        Odrzuć
+                    </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>

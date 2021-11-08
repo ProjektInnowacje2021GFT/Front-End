@@ -1,0 +1,59 @@
+<div class="main-container">
+    <div class="first-step">
+        <h1 class="first-step-text">1) Wybierz piętro</h1>
+        <p class="first-step-text">Kliknij na dostępne piętro, aby wybrać</p>
+        <div class="building">
+            <div class="last floor">12</div>
+            <div class="eleven floor" [ngStyle]="{'background-color': chosenFloor === 11 ? '#eb9731' : 'white'}" (click)="chooseFloor(11)">11</div>
+            <div class="ten floor" [ngStyle]="{'background-color': chosenFloor === 10 ? '#eb9731' : 'white'}" (click)="chooseFloor(10)">10</div>
+            <div class="nine floor" [ngStyle]="{'background-color': chosenFloor === 9 ? '#eb9731' : 'white'}" (click)="chooseFloor(9)">9</div>
+            <div class="eight floor">8</div>
+            <div class="seven floor">7</div>
+            <div class="six floor">6</div>
+            <div class="five floor">5</div>
+            <div class="four floor">4</div>
+            <div class="three floor">3</div>
+            <div class="two floor">2</div>
+            <div class="one floor">1</div>
+        </div>
+    </div>
+
+    <div class="second-step">
+        <h1 class="first-step-text">2) Wybierz biurko</h1>
+        <p class="first-step-text">Wybierz biurko dla siebie lub kolegi z zespołu</p>
+
+        <div class="sector">
+            <h3>Sektor</h3>
+            <select class="form-select" [(ngModel)]="chosenSector">
+                <option *ngFor="let availableSector of availableSectors" [value]="availableSector">{{availableSector}}</option>
+            </select>
+        </div>
+
+        <div class="desk">
+            <h3>Biurko</h3>
+            <select class="form-select" [(ngModel)]="chosenDesk">
+                <option *ngFor="let availableDeskNumber of availableDeskNumbers" [value]="availableDeskNumber">{{availableDeskNumber}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="third-step">
+        <h1 class="first-step-text">3) Wybierz osobę</h1>
+        <p class="first-step-text">Wybierz, dla kogo rezerwujesz miejsce</p>
+
+        <select class="form-select" [(ngModel)]="emailAddressForPersonWhoWillGetReservation">
+            <option *ngFor="let employee of employees"
+                [value]="employee.email">
+                {{employee.email}} / {{employee.name}} {{employee.surname}}
+            </option>
+        </select>
+
+        <hr>
+
+        <ngx-datepicker [(ngModel)]="date" [options]="options"></ngx-datepicker>
+
+        <hr>
+
+        <button class="add-reservation-button" (click)="createReservation()">Zarezerwuj miejsce</button>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="main-container">
+    <div class="register-container">
+        <h1 class="register-header">Wprowadź dane</h1>
+
+        <div class="register-form">
+            <form>
+                <div class="row">
+                    <div class="col">
+                        <label for="nameInput" class="form-label">Imię</label>
+                        <input [(ngModel)]="name" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="nameInput">
+                    </div>
+                    <div class="col">
+                        <label for="surnameInput" class="form-label">Nazwisko</label>
+                        <input [(ngModel)]="surname" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="surnameInput">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="companyInput" class="form-label">Firma</label>
+                    <select id="companyInput" class="form-select" disabled>
+                        <option selected>GFT Polska</option>
+                    </select>
+                </div>
+                <div class="row last-form">
+                    <div class="col">
+                        <label for="emailInput" class="form-label">Adres e-mail</label>
+                        <input [(ngModel)]="emailAddress" [ngModelOptions]="{standalone: true}" type="email" class="form-control" id="emailInput">
+                    </div>
+                    <div class="col">
+                        <label for="passwordInput" class="form-label">Hasło</label>
+                        <input [(ngModel)]="password" [ngModelOptions]="{standalone: true}" type="password" class="form-control" id="passwordInput">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-register" (click)="registerUser()">Zarejestruj się</button>
+              </form>
+        </div>
+    </div>
+</div>

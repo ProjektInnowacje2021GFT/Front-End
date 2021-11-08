@@ -1,0 +1,90 @@
+.main-container {
+    display: flex;
+    height: 85vh;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.building {
+    width: 100px;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.floor {
+    border: 0.5px solid black;
+    font-size: 24px;
+    text-align: center;
+    font-weight: 100;
+    border-radius: 5px;
+    background-color: gray;
+}
+
+.eleven, .ten, .nine {
+    background-color: white;
+}
+
+.eleven:hover, .ten:hover, .nine:hover {
+    background-color: #eb9731;
+    cursor: pointer;
+}
+
+.first-step {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.first-step-text {
+    font-weight: 100;
+}
+
+.second-step {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.third-step {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.sector {
+    margin-bottom: 40px;
+    border: 0.5px solid #eb9731;
+    padding: 65px;
+    border-radius: 40px;
+}
+
+.desk {
+    border: 0.5px solid #eb9731;
+    padding: 65px;
+    border-radius: 40px;
+}
+
+.add-reservation-button {
+    border-radius: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    background-color: white;
+    background: transparent;
+    line-height: normal;
+    color: #eb9731;
+    border: 0.5px solid #eb9731;
+}
+
+.add-reservation-button:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}

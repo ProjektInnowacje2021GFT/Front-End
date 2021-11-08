@@ -1,0 +1,19 @@
+<div class="main-container">
+    <div class="login-container">
+        <h1 class="login-header">Wprowadź dane</h1>
+
+        <div class="login-form">
+            <form>
+                <div class="mb-3">
+                  <label for="emailInput" class="form-label">Adres e-mail</label>
+                  <input [(ngModel)]="emailAddress" [ngModelOptions]="{standalone: true}" type="email" class="form-control" id="emailInput">
+                </div>
+                <div class="mb-3">
+                  <label for="passwordInput" class="form-label">Hasło</label>
+                  <input [(ngModel)]="password" [ngModelOptions]="{standalone: true}" type="password" class="form-control" id="passwordInput">
+                </div>
+                <button type="submit" class="btn btn-login" (click)="loginUser()">Zaloguj się</button>
+              </form>
+        </div>
+    </div>
+</div>

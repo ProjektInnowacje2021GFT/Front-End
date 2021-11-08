@@ -1,0 +1,33 @@
+.navbar-collapse {
+    justify-content: right;
+}
+
+.navbar {
+    background-color: #eb9731;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: white;
+}
+
+.navbar-brand:hover, .nav-link:hover {
+    color: #facd96;
+}
+
+.nav-link {
+    color: white;
+}
+
+.navbar-toggler-icon {
+    border: 0.5px solid black;
+    border-radius: 20px;
+}
+
+.router-link-active {
+    color: #7d4f00;
+}
+
+.small {
+    font-weight: 100;
+}

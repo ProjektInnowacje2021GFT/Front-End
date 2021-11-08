@@ -1,0 +1,14 @@
+<div class="main-container">
+    <div class="message-container">
+        <h1 class="message-header">Detale rezerwacji na dzień <b>{{reservationDetails.reservationDate}}</b></h1>
+        <img class="reservation-details-img" width="50" height="50" src="../../../assets/desk_orange.png">
+
+        <div class="reservation-info">
+            Piętro: {{reservationDetails.floor}} <br>
+            Sektor: {{reservationDetails.sector}} <br>
+            Biurko: {{reservationDetails.desk}}
+        </div>
+
+            <button class="delete-button" (click)="deleteReservation(reservationDetails.reservationId)">Usuń rezerwację</button>
+    </div>
+</div>
