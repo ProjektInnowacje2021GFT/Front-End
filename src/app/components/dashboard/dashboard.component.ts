@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   latestReservationDate: string = "";
   latestReservationPlace: string = "";
   latestReservationDetails: ReservationDetails = {} as ReservationDetails;
+  qrCode: Blob = {} as Blob;
 
   constructor(private router: Router, private authService: AuthService, private reservationService: ReservationService,
     private toastr: ToastrService) { 
@@ -23,9 +24,21 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLatestReservationDetails();
+    this.getQrCodeForLatestReservation();
     if (this.authService.isFreshlyLoggedIn()) {
       window.location.reload();
     }
+  }
+
+  getQrCodeForLatestReservation() {
+    this.reservationService.generateQrCodeForSpecificReservation(this.latestReservationDetails.reservationId)
+      .subscribe(
+        data => {
+          this.qrCode = data;
+        },
+        err => {
+        }
+      )
   }
 
   getLatestReservationDetails() {
@@ -66,7 +79,7 @@ export class DashboardComponent implements OnInit {
   }
 
   redirectToNewReservation() {
-    this.router.navigateByUrl("new-reservation");
+    this.router.navigateByUrl("pick-up-date-and-floor");
   }
 
 }

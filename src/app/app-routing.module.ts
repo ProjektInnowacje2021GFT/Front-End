@@ -11,6 +11,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PickUpDateAndFloorComponent } from './components/pick-up-date-and-floor/pick-up-date-and-floor.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: 'tickets', component: TicketsComponent },
   { path: 'new-reservation', component: AddReservationComponent },
   { path: 'successful-reservation', component: SuccessfulReservationComponent },
-  { path: 'reservation-details', component: ReservationDetailsComponent }
+  { path: 'reservation-details', component: ReservationDetailsComponent },
+  { path: 'pick-up-date-and-floor', component: PickUpDateAndFloorComponent }
 ];
 
 @NgModule({

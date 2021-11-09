@@ -24,6 +24,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { DatepickerModule } from 'ng2-datepicker';
 import { SuccessfulReservationComponent } from './components/successful-reservation/successful-reservation.component';
 import { ReservationDetailsComponent } from './components/reservation-details/reservation-details.component';
+import { PickUpDateAndFloorComponent } from './components/pick-up-date-and-floor/pick-up-date-and-floor.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ReservationDetailsComponent } from './components/reservation-details/re
     TicketsComponent,
     AddReservationComponent,
     SuccessfulReservationComponent,
-    ReservationDetailsComponent
+    ReservationDetailsComponent,
+    PickUpDateAndFloorComponent
   ],
   imports: [
     BrowserModule,

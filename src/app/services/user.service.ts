@@ -40,5 +40,9 @@ export class UserService {
   deleteUser(userId: number): Observable<ResponseMessageDto> {
     return this.http.delete<ResponseMessageDto>(this.userServiceHttpUrl + "/" + userId);
   }
+
+  listUsersWithApprovedStatus(): Observable<UserLoginDetailsDto[]> {
+    return this.http.get<UserLoginDetailsDto[]>(this.userServiceHttpUrl + "/approved");
+  }
   
 }

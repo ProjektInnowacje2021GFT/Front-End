@@ -1,4 +1,5 @@
-import { Router } from '@angular/router';
+import { DateAndFloorDto } from './../../dtos/DateAndFloorDto';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CreateNewReservationDto } from './../../dtos/CreateNewReservationDto';
 import { ToastrService } from 'ngx-toastr';
 import { DeskDetailsDto } from './../../dtos/DeskDetailsDto';
@@ -6,7 +7,7 @@ import { ReservationService } from './../../services/reservation.service';
 import { UserLoginDetailsDto } from './../../dtos/UserLoginDetailsDto';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
-import { DatepickerOptions } from 'ng2-datepicker';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-reservation',
@@ -15,7 +16,6 @@ import { DatepickerOptions } from 'ng2-datepicker';
 })
 export class AddReservationComponent implements OnInit {
 
-  chosenFloor: number = 0;
   chosenSector: string = "";
   chosenDesk: string = "";
   emailAddressForPersonWhoWillGetReservation: string = "";
@@ -23,21 +23,26 @@ export class AddReservationComponent implements OnInit {
   availableDesks: DeskDetailsDto[] = {} as Array<DeskDetailsDto>
   availableSectors: string[] = {} as Array<string>
   availableDeskNumbers: string[] = {} as Array<string>
-  date: Date = new Date();
-  options: DatepickerOptions = {
-    format: 'LLLL do yyyy'
-  }
+  chosenParameters: DateAndFloorDto = {} as DateAndFloorDto;
 
   constructor(private UserService: UserService, private reservationService: ReservationService, private toastr: ToastrService,
-      private router: Router) {
+      private router: Router, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.getAllEmployees();
+    this.activatedRoute.paramMap
+      .pipe(map(() => window.history.state))
+      .subscribe(
+        data => {
+          this.chosenParameters = data;
+        }
+      )
+      this.specifyAvailableDesks();
   }
 
   getAllEmployees() {
-    this.UserService.listAllUsers()
+    this.UserService.listUsersWithApprovedStatus()
       .subscribe(
         data => {
           this.employees = data;
@@ -45,14 +50,12 @@ export class AddReservationComponent implements OnInit {
     );
   }
 
-  chooseFloor(floor: number) {
-    this.chosenFloor = floor;
-    var todayDate = new Date();
-    console.log(todayDate);
-    console.log(todayDate.toISOString().split('T')[0])
-    this.reservationService.getAvailableDesksOnSpecificFloor(floor, todayDate.toISOString().split('T')[0])
+  specifyAvailableDesks() {
+    this.reservationService.getAvailableDesksOnSpecificFloor(this.chosenParameters.floor,
+       this.chosenParameters.date.toISOString().split('T')[0])
       .subscribe(
         data => {
+          console.log(data);
           this.availableDesks = data;
           var uniqueSectors = [... new Set(data.map(desk => desk.sector))];
           var uniqueDeskNumbers = [... new Set(data.map(desk => desk.desk))]
@@ -64,10 +67,6 @@ export class AddReservationComponent implements OnInit {
 
   createReservation() {
     var numberOfErrors = 0;
-    if (this.chosenFloor === 0) {
-      this.toastr.error('Floor has not been chosen.'); 
-      numberOfErrors++;
-    }
     if (this.chosenSector === "") {
       this.toastr.error('Sector has not been chosen.');
       numberOfErrors++;
@@ -87,8 +86,8 @@ export class AddReservationComponent implements OnInit {
     var createNewReservationRequest: CreateNewReservationDto = {
       desk: this.chosenDesk,
       sector: this.chosenSector,
-      floor: this.chosenFloor,
-      date: this.date.toISOString().split('T')[0],
+      floor: this.chosenParameters.floor,
+      date: this.chosenParameters.date.toISOString().split('T')[0],
       emailAddressOfAPersonThatBelongsToReservation: this.emailAddressForPersonWhoWillGetReservation
     };
 
@@ -100,6 +99,7 @@ export class AddReservationComponent implements OnInit {
           this.router.navigateByUrl('/successful-reservation');
         },
         err => {
+          console.log(err);
           this.toastr.error('Reservation actually exists.');
         }
       )

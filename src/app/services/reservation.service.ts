@@ -35,4 +35,8 @@ export class ReservationService {
     return this.httpClient.get<ReservationDetails[]>(this.reservationHttpUrl + "/all/" + userId);
   }
 
+  generateQrCodeForSpecificReservation(reservationId: number): Observable<Blob> {
+    return this.httpClient.get<Blob>(this.reservationHttpUrl + "/qr/" + reservationId);
+  }
+
 }

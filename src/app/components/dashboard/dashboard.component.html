@@ -14,7 +14,7 @@
                     <p class="newest-reservation-paragraph">
                         {{latestReservationDetails.reservationDate}}, sektor {{latestReservationDetails.sector}} / biurko nr {{latestReservationDetails.desk}}
                     </p>
-                    <button class="gdesk-button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                    <button class="gdesk-button" (click)="getQrCodeForLatestReservation()" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
                         Detale rezerwacji
                     </button>
                 </div>
@@ -74,7 +74,7 @@
                     <h1>
                         Kod QR
                     </h1>
-                    tu bedzie wygenerowany qr code z javki
+                    {{qrCode}}
                 </div>
 
                 <div class="details-action">
