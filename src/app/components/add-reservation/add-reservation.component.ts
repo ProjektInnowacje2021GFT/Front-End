@@ -45,6 +45,7 @@ export class AddReservationComponent implements OnInit {
     this.UserService.listUsersWithApprovedStatus()
       .subscribe(
         data => {
+          console.log(data);
           this.employees = data;
         }
     );

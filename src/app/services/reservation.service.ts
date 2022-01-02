@@ -36,7 +36,7 @@ export class ReservationService {
   }
 
   generateQrCodeForSpecificReservation(reservationId: number): Observable<Blob> {
-    return this.httpClient.get<Blob>(this.reservationHttpUrl + "/qr/" + reservationId);
+    return this.httpClient.get(this.reservationHttpUrl + "/qr/" + reservationId, { responseType: 'blob' });
   }
 
 }

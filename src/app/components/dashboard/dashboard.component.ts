@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
   latestReservationDate: string = "";
   latestReservationPlace: string = "";
   latestReservationDetails: ReservationDetails = {} as ReservationDetails;
-  qrCode: Blob = {} as Blob;
+  qrCode: any;
 
   constructor(private router: Router, private authService: AuthService, private reservationService: ReservationService,
     private toastr: ToastrService) { 
@@ -24,9 +24,20 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLatestReservationDetails();
-    this.getQrCodeForLatestReservation();
+    setTimeout(() => {}, 3000);
     if (this.authService.isFreshlyLoggedIn()) {
       window.location.reload();
+    }
+  }
+
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+      this.qrCode = reader.result;
+    }, false);
+
+    if (image) {
+      reader.readAsDataURL(image);
     }
   }
 
@@ -34,9 +45,10 @@ export class DashboardComponent implements OnInit {
     this.reservationService.generateQrCodeForSpecificReservation(this.latestReservationDetails.reservationId)
       .subscribe(
         data => {
-          this.qrCode = data;
+          this.createImageFromBlob(data);
         },
         err => {
+          this.createImageFromBlob(err.error.text);
         }
       )
   }
