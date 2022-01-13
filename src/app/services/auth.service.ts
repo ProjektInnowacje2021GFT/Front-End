@@ -13,10 +13,10 @@ export class AuthService {
   saveUserInSessionStorage(userLoginDetails: UserLoginDetailsDto) {
     this.numberOfDashboardAccesses++;
     sessionStorage.setItem("emailAddress", userLoginDetails.email);
-    sessionStorage.setItem("company", userLoginDetails.company);
-    sessionStorage.setItem("name", userLoginDetails.name);
-    sessionStorage.setItem("surname", userLoginDetails.surname);
-    sessionStorage.setItem("userId", userLoginDetails.userId.toString());
+    sessionStorage.setItem("company", userLoginDetails.companyName);
+    sessionStorage.setItem("name", userLoginDetails.firstName);
+    sessionStorage.setItem("surname", userLoginDetails.lastName);
+    sessionStorage.setItem("userId", userLoginDetails.id.toString());
     sessionStorage.setItem("role", userLoginDetails.role);
     sessionStorage.setItem("isLoggedIn", "true");
   }

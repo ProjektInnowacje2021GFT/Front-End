@@ -13,13 +13,13 @@
             </thead>
             <tbody>
               <tr *ngFor="let employee of employees"> 
-                <td>{{employee.name}}</td>
-                <td>{{employee.surname}}</td>
-                <td>{{employee.company}}</td>
+                <td>{{employee.firstName}}</td>
+                <td>{{employee.lastName}}</td>
+                <td>{{employee.companyName}}</td>
                 <td>{{employee.email}}</td>
                 <td>{{determineUserRole(employee.role)}}</td>
                 <td *ngIf="loggedInUserRole === 'ADMIN'">
-                    <button class="decline-button" (click)="deleteUser(employee.userId)">
+                    <button class="decline-button" (click)="deleteUser(employee.id)">
                         Usuń
                     </button>
                 </td>

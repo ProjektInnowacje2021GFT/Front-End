@@ -26,7 +26,7 @@
         <select class="form-select" [(ngModel)]="emailAddressForPersonWhoWillGetReservation">
             <option *ngFor="let employee of employees"
                 [value]="employee.email">
-                {{employee.email}} / {{employee.name}} {{employee.surname}}
+                {{employee.email}} / {{employee.firstName}} {{employee.lastName}}
             </option>
         </select>
 

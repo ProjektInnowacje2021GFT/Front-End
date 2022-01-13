@@ -1,8 +1,9 @@
 export interface UserLoginDetailsDto {
-    userId: number;
-    name: string;
-    surname: string;
+    id: number;
+    firstName: string;
+    lastName: string;
+    companyName: string;
     email: string;
-    company: string;
     role: string;
+    jwt: string;
 }
