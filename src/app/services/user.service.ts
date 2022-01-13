@@ -12,7 +12,7 @@ import { WaitingUserDto } from '../dtos/WaitingUserDto';
 })
 export class UserService {
 
-  private userServiceHttpUrl: string = "http://localhost:8080/users";
+  private userServiceHttpUrl: string = "http://localhost:8080/authorization";
 
   constructor(private http: HttpClient) { }
 
