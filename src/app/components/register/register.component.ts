@@ -17,7 +17,6 @@ export class RegisterComponent implements OnInit {
   company: string = "GFT Polska";
   emailAddress: string = "";
   password: string = "";
-  role: string = "USER";
 
   constructor(private router: Router, private userService: UserService, private toastr: ToastrService) { }
 
@@ -25,12 +24,11 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUser() {
-    this.registerUserDto.name = this.name;
-    this.registerUserDto.surname = this.surname;
-    this.registerUserDto.company = this.company;
+    this.registerUserDto.firstName = this.name;
+    this.registerUserDto.lastName = this.surname;
+    this.registerUserDto.companyName = this.company;
     this.registerUserDto.email = this.emailAddress;
     this.registerUserDto.password = this.password;
-    this.registerUserDto.role = this.role;
     this.userService.registerUser(this.registerUserDto)
       .subscribe(
         data => {
