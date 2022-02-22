@@ -15,7 +15,7 @@ import { EmployeesComponent } from './components/employees/employees.component';
 import { ReservationsComponent } from './components/reservations/reservations.component';
 import { TicketsComponent } from './components/tickets/tickets.component';
 import { AddReservationComponent } from './components/add-reservation/add-reservation.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
@@ -25,6 +25,7 @@ import { DatepickerModule } from 'ng2-datepicker';
 import { SuccessfulReservationComponent } from './components/successful-reservation/successful-reservation.component';
 import { ReservationDetailsComponent } from './components/reservation-details/reservation-details.component';
 import { PickUpDateAndFloorComponent } from './components/pick-up-date-and-floor/pick-up-date-and-floor.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,9 @@ import { PickUpDateAndFloorComponent } from './components/pick-up-date-and-floor
     DpDatePickerModule,
     DatepickerModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
