@@ -19,6 +19,7 @@ export class AuthService {
     sessionStorage.setItem("userId", userLoginDetails.id.toString());
     sessionStorage.setItem("role", userLoginDetails.role);
     sessionStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("jwtToken", userLoginDetails.jwt);
   }
 
   getUserRole() {

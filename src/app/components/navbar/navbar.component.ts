@@ -27,6 +27,7 @@ export class NavbarComponent implements OnInit {
 
   async logout() {
     this.authService.logout();
+    localStorage.removeItem("jwtToken");
     this.router.navigateByUrl("home");
     await new Promise(f => setTimeout(f, 100));
     window.location.reload();

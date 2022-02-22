@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
         this.loginResult = data;
         this.showSuccessMessage('User logged in successfully.');
         this.authService.saveUserInSessionStorage(data);
-        localStorage.setItem("jwtToken", data.jwt);
         this.router.navigateByUrl('dashboard');
       },
       error => this.showErrorMessage(error.error.message));
