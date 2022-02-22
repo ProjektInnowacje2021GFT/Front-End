@@ -12,37 +12,41 @@ import { WaitingUserDto } from '../dtos/WaitingUserDto';
 })
 export class UserService {
 
-  private userServiceHttpUrl: string = "http://localhost:8080/authorization";
+  private authServiceHttpUrl: string = "http://localhost:8080/authorization";
+  private usersServiceHttpUrl: string = "http://localhost:8080/users";
 
   constructor(private http: HttpClient) { }
 
   loginUser(userLoginDto: UserLoginDto): Observable<UserLoginDetailsDto> {
-    return this.http.post<UserLoginDetailsDto>(this.userServiceHttpUrl + "/login", userLoginDto);
+    return this.http.post<UserLoginDetailsDto>(this.authServiceHttpUrl + "/login", userLoginDto);
   }
 
   registerUser(registerUserDto: RegisterUserDto): Observable<ResponseMessageDto> {
-    return this.http.post<ResponseMessageDto>(this.userServiceHttpUrl + "/register", registerUserDto);
+    return this.http.post<ResponseMessageDto>(this.authServiceHttpUrl + "/register", registerUserDto);
   }
 
   getListOfNewUsersWaitingForApproval(): Observable<WaitingUserDto[]> {
-    return this.http.get<WaitingUserDto[]>(this.userServiceHttpUrl + "/new-accounts");
+    return this.http.get<WaitingUserDto[]>(this.usersServiceHttpUrl + "/waiting");
   }
 
-  maintainWaitingUser(emailAddress: string, status: string): Observable<ResponseMessageDto> {
-    return this.http.put<ResponseMessageDto>(this.userServiceHttpUrl + 
-      "/new-accounts/maintenance?emailAddress=" + emailAddress + "&action=" + status, {});
+  acceptUser(id: number): Observable<ResponseMessageDto> {
+    return this.http.patch<ResponseMessageDto>(`${this.usersServiceHttpUrl}/accept/${id}`, {});
+  }
+
+  blockUser(id: number): Observable<ResponseMessageDto> {
+    return this.http.patch<ResponseMessageDto>(`${this.usersServiceHttpUrl}/block/${id}`, {});
   }
 
   listAllUsers(): Observable<UserLoginDetailsDto[]> {
-    return this.http.get<UserLoginDetailsDto[]>(this.userServiceHttpUrl);
+    return this.http.get<UserLoginDetailsDto[]>(this.usersServiceHttpUrl + "/approved");
   }
 
   deleteUser(userId: number): Observable<ResponseMessageDto> {
-    return this.http.delete<ResponseMessageDto>(this.userServiceHttpUrl + "/" + userId);
+    return this.http.delete<ResponseMessageDto>(this.usersServiceHttpUrl + "/" + userId);
   }
-
+  
   listUsersWithApprovedStatus(): Observable<UserLoginDetailsDto[]> {
-    return this.http.get<UserLoginDetailsDto[]>(this.userServiceHttpUrl + "/approved");
+    return this.http.get<UserLoginDetailsDto[]>(this.usersServiceHttpUrl + "/approved");
   }
   
 }

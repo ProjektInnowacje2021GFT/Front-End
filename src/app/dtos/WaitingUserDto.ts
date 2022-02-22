@@ -1,7 +1,9 @@
 export interface WaitingUserDto {
-    name: string;
-    surname: string;
-    company: string;
-    emailAddress: string;
+    id: number;
+    firstName: string;
+    lastName: string;
+    companyName: string;
+    email: string;
     status: string;
+    role: string;
 }

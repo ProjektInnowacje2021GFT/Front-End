@@ -22,38 +22,38 @@ export class TicketsComponent implements OnInit {
     this.userService.getListOfNewUsersWaitingForApproval()
       .subscribe(
         data => {
-          this.waitingUserDtos = data;
+          this.waitingUserDtos = data.map(item => item);
         }
       );
   }
 
   determineUserStatus(status: string) {
-    if (status === 'WAITING') {
+    if (status === 'WAIT_FOR_APPROVAL') {
       return 'Oczekujący';
     }
 
     return '';
   }
 
-  acceptUser(emailAddress: string) {
-    this.userService.maintainWaitingUser(emailAddress, "APPROVED")
+  acceptUser(id: number) {
+    this.userService.acceptUser(id)
       .subscribe(
         data => {
+          this.ngOnInit();
           this.showSuccessMessage(data.message);
-          window.location.reload();
         },
         error => {
           this.showErrorMessage(error.error.message);
         }
-      )
+      );
   }
 
-  declineUser(emailAddress: string) {
-    this.userService.maintainWaitingUser(emailAddress, "BLOCKED")
+  declineUser(id: number) {
+    this.userService.blockUser(id)
       .subscribe(
         data => {
+          this.ngOnInit();
           this.showSuccessMessage(data.message);
-          window.location.reload();
         },
         error => {
           this.showErrorMessage(error.error.message);
