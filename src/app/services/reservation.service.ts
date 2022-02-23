@@ -12,15 +12,17 @@ import { ResponseMessageDto } from '../dtos/ResponseMessageDto';
 export class ReservationService {
 
   private reservationHttpUrl: string = "http://localhost:8080/reservations";
+  private deskHttpUrl: string = "http://localhost:8080/desks";
+
 
   constructor(private httpClient: HttpClient) { }
 
-  createReservation(createReservationRequest: CreateNewReservationDto): Observable<ReservationDetails> {
-    return this.httpClient.post<ReservationDetails>(this.reservationHttpUrl, createReservationRequest);
+  createReservation(createReservationRequest: CreateNewReservationDto): Observable<ResponseMessageDto> {
+    return this.httpClient.post<ResponseMessageDto>(this.reservationHttpUrl + "/", createReservationRequest);
   }
 
-  getAvailableDesksOnSpecificFloor(floor: number, todayDate: string): Observable<DeskDetailsDto[]> {
-    return this.httpClient.get<DeskDetailsDto[]>(this.reservationHttpUrl + "/" + floor + "?todayDate=" + todayDate);
+  getAvailableDesksOnSpecificFloor(floor: number, todayDate: Date): Observable<DeskDetailsDto[]> {
+    return this.httpClient.get<DeskDetailsDto[]>(this.deskHttpUrl + "/floor/" + floor + "/date/" + todayDate);
   }
 
   getLatestReservationForSpecificUser(emailAddress: string): Observable<ReservationDetails> {
@@ -32,7 +34,7 @@ export class ReservationService {
   }
 
   getReservationsForSpecificUser(userId: number): Observable<ReservationDetails[]> {
-    return this.httpClient.get<ReservationDetails[]>(this.reservationHttpUrl + "/all/" + userId);
+    return this.httpClient.get<ReservationDetails[]>(this.reservationHttpUrl + "/" + userId);
   }
 
   generateQrCodeForSpecificReservation(reservationId: number): Observable<Blob> {
