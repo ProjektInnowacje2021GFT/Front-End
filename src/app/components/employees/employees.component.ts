@@ -34,8 +34,8 @@ export class EmployeesComponent implements OnInit {
     this.userService.deleteUser(userId)
       .subscribe(
         data => {
+          this.ngOnInit();
           this.toastr.success(data.message);
-          window.location.reload();
         },
         err => {
           this.toastr.error(err.err.message);
