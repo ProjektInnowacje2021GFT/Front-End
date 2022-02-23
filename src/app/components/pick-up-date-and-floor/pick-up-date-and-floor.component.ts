@@ -14,16 +14,13 @@ import { DateAndFloorDto } from 'src/app/dtos/DateAndFloorDto';
 export class PickUpDateAndFloorComponent implements OnInit {
 
   chosenFloor: number = 0;
-  availableDesks: DeskDetailsDto[] = {} as Array<DeskDetailsDto>
-  availableSectors: string[] = {} as Array<string>
-  availableDeskNumbers: string[] = {} as Array<string>
   date: Date = new Date();
   options: DatepickerOptions = {
     format: 'LLLL do yyyy'
   }
   chosenParameters: DateAndFloorDto = {} as DateAndFloorDto;
 
-  constructor(private reservationService: ReservationService, private router: Router, private toastr: ToastrService) { }
+  constructor(private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
