@@ -1,7 +1,7 @@
 export interface CreateNewReservationDto {
     sector: string;
-    desk: string;
+    deskNumber: string;
     floor: number;
-    emailAddressOfAPersonThatBelongsToReservation: string;
-    date: string;
+    email: string;
+    reservationDate: string;
 }
