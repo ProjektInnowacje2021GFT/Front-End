@@ -1,8 +1,5 @@
 export interface ReservationDetails {
-    reservationId: number;
-    sector: string;
+    id: number;
     desk: string;
-    floor: number;
-    emailAddressOfAPersonThatBelongsToReservation: string;
     reservationDate: string
 }
