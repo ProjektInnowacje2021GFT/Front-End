@@ -23,7 +23,6 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getLatestReservationDetails();
     setTimeout(() => {}, 3000);
     if (this.authService.isFreshlyLoggedIn()) {
       window.location.reload();
@@ -41,50 +40,6 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  getQrCodeForLatestReservation() {
-    this.reservationService.generateQrCodeForSpecificReservation(this.latestReservationDetails.reservationId)
-      .subscribe(
-        data => {
-          this.createImageFromBlob(data);
-        },
-        err => {
-          this.createImageFromBlob(err.error.text);
-        }
-      )
-  }
-
-  getLatestReservationDetails() {
-    var emailAddress = this.authService.whoIsLogged()!;
-    this.reservationService.getLatestReservationForSpecificUser(emailAddress)
-      .subscribe(
-        data => {
-          this.latestReservationDetails = {
-            reservationId: data.reservationId,
-            sector: data.sector,
-            desk: data.desk,
-            floor: data.floor,
-            emailAddressOfAPersonThatBelongsToReservation: data.emailAddressOfAPersonThatBelongsToReservation,
-            reservationDate: data.reservationDate
-          }
-        },
-        err => {
-          this.userHasAnyReservation = false;
-        }
-      )
-  }
-
-  deleteReservation() {
-    this.reservationService.deleteReservation(this.latestReservationDetails.reservationId)
-      .subscribe(
-        data => {
-          this.toastr.success(data.message);
-          window.location.reload();
-        },
-        err => {
-          this.toastr.error(err.err.message);
-        }
-      )
-  }
 
   redirectToReservations() {
     this.router.navigateByUrl("reservations");

@@ -4,21 +4,6 @@
             <div class="desk-icon">
                 <img width="100" height="100" src="../../../assets/desk_orange.png" class="img-fluid desk">
             </div>
-            <div class="header">
-                <div class="dashboard-header-container">
-                    <h1 class="dashboard-header">
-                        Twoja najbliższa rezerwacja
-                    </h1>
-                </div>
-                <div class="dashboard-paragraph-container">
-                    <p class="newest-reservation-paragraph">
-                        {{latestReservationDetails.reservationDate}}, sektor {{latestReservationDetails.sector}} / biurko nr {{latestReservationDetails.desk}}
-                    </p>
-                    <button class="gdesk-button" (click)="getQrCodeForLatestReservation()" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-                        Detale rezerwacji
-                    </button>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -56,15 +41,9 @@
         </div>
         <div class="modal-body">
             <div class="details-container">
-                <div class="details-header">
-                    <h1>
-                        Użytkownik {{latestReservationDetails.emailAddressOfAPersonThatBelongsToReservation}}
-                    </h1>
-                </div>
+    
 
                 <div class="details-content">
-                    Piętro: {{latestReservationDetails.floor}} <br>
-                    Sektor: {{latestReservationDetails.sector}} <br>
                     Miejsce: {{latestReservationDetails.desk}}
                 </div>
 
@@ -77,11 +56,6 @@
                     <img [src]="qrCode">
                 </div>
 
-                <div class="details-action">
-                    <button class="delete-button" (click)="deleteReservation()">
-                        Usuń rezerwację
-                    </button>
-                </div>
             </div>
         </div>
         <div class="modal-footer">
