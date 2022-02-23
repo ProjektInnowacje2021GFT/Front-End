@@ -43,6 +43,7 @@ export class AuthService {
   }
 
   logout() {
+    localStorage.removeItem("jwtToken");
     sessionStorage.clear();
   }
 
