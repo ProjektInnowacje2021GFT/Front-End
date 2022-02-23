@@ -1,6 +1,6 @@
 export interface DeskDetailsDto {
-    deskId: number;
-    floor: number;
+    id: number;
     sector: string;
-    desk: string;
+    number: number;
+    floor: number;
 }
