@@ -22,7 +22,7 @@ export class AddReservationComponent implements OnInit {
   employees: UserLoginDetailsDto[] = {} as Array<UserLoginDetailsDto>
   availableDesks: DeskDetailsDto[] = {} as Array<DeskDetailsDto>
   availableSectors: string[] = {} as Array<string>
-  availableDeskNumbers: string[] = {} as Array<string>
+  availableDeskNumbers: number[] = {} as Array<number>
   chosenParameters: DateAndFloorDto = {} as DateAndFloorDto;
 
   constructor(private UserService: UserService, private reservationService: ReservationService, private toastr: ToastrService,
@@ -52,14 +52,14 @@ export class AddReservationComponent implements OnInit {
   }
 
   specifyAvailableDesks() {
-    this.reservationService.getAvailableDesksOnSpecificFloor(this.chosenParameters.floor,
-       this.chosenParameters.date.toISOString().split('T')[0])
+    this.reservationService.getAvailableDesksOnSpecificFloor(
+      this.chosenParameters.floor, 
+      this.chosenParameters.date)
       .subscribe(
         data => {
-          console.log(data);
           this.availableDesks = data;
           var uniqueSectors = [... new Set(data.map(desk => desk.sector))];
-          var uniqueDeskNumbers = [... new Set(data.map(desk => desk.desk))]
+          var uniqueDeskNumbers = [... new Set(data.map(desk => desk.number))]
           this.availableSectors = Array.from(uniqueSectors.values());
           this.availableDeskNumbers = Array.from(uniqueDeskNumbers.values());
         }
@@ -85,18 +85,17 @@ export class AddReservationComponent implements OnInit {
     }
 
     var createNewReservationRequest: CreateNewReservationDto = {
-      desk: this.chosenDesk,
+      deskNumber: this.chosenDesk,
       sector: this.chosenSector,
       floor: this.chosenParameters.floor,
-      date: this.chosenParameters.date.toISOString().split('T')[0],
-      emailAddressOfAPersonThatBelongsToReservation: this.emailAddressForPersonWhoWillGetReservation
+      reservationDate: this.chosenParameters.date.toISOString().split('T').join(' '),
+      email: this.emailAddressForPersonWhoWillGetReservation
     };
 
     this.reservationService.createReservation(createNewReservationRequest)
       .subscribe(
         data => {
-          this.toastr.success('You have successfully reserved ' + data.desk + ' ' + data.sector + ' on floor ' + data.floor
-           + ' for ' + data.emailAddressOfAPersonThatBelongsToReservation + '!');
+          this.toastr.success('You have successfully reserved desk');
           this.router.navigateByUrl('/successful-reservation');
         },
         err => {
